@@ -19,25 +19,25 @@ namespace Ultimate_Translation
 
                 guiHandler = (searchContext) =>
                 {
-                    var settings = LanguageSettings.Instance;
+                    var settings = LanguageManager.Instance;
                     
-                    var availableLanguages = settings.languages.Where(ctg => ctg != null).Select(ctg => ctg.language.ToString()).ToArray();
+                    // var availableLanguages = settings.languages.Where(ctg => ctg != null).Select(ctg => ctg.language.ToString()).ToArray();
 
-                    var lang = (int)settings.defaultLanguage;
-                    lang = EditorGUILayout.Popup("Language", lang, availableLanguages);
-                    settings.defaultLanguage = (SystemLanguage)lang;
-                    SerializedObject serializedSettings = new SerializedObject(settings);
-                    SerializedProperty languagesProperty = serializedSettings.FindProperty("languages");
+                    // var lang = (int)settings.defaultLanguage;
+                    // lang = EditorGUILayout.Popup("Language", lang, availableLanguages);
+                    // settings.defaultLanguage = (SystemLanguage)lang;
+                    // SerializedObject serializedSettings = new SerializedObject(settings);
+                    // SerializedProperty languagesProperty = serializedSettings.FindProperty("languages");
 
-                    serializedSettings.Update();
-                    EditorGUILayout.PropertyField(languagesProperty, new GUIContent("Languages"));
+                    // serializedSettings.Update();
+                    // EditorGUILayout.PropertyField(languagesProperty, new GUIContent("Languages"));
                     
-                    CreatingLanguage();
-                    serializedSettings.ApplyModifiedProperties();
+                    // CreatingLanguage();
+                    // serializedSettings.ApplyModifiedProperties();
                     
                     if (GUI.changed)
                     {
-                        EditorUtility.SetDirty(settings);
+                        // EditorUtility.SetDirty(settings);
                     }
                 },
                 
@@ -56,7 +56,7 @@ namespace Ultimate_Translation
             
             if(GUILayout.Button("Create Language"))
             {
-                LanguageSettings.Instance.CreateLanguage(choicedLanguage);
+                // LanguageSettings.Instance.CreateLanguage(choicedLanguage);
             }
             GUILayout.EndHorizontal();
         }

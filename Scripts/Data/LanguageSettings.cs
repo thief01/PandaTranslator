@@ -2,25 +2,21 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Ultimate_Translation.Items
 {
+    [CreateAssetMenu(menuName ="Mimi Games/Language/Language Settings")]
     public class LanguageSettings : ScriptableObject
     {
-        public static LanguageSettings Instance => GetInstance();
-
-        private static LanguageSettings instance;
-
-        public SystemLanguage defaultLanguage = SystemLanguage.English;
+        public SystemLanguage CurrentLanguage = SystemLanguage.English;
+        public SystemLanguage DefaultLanguage = SystemLanguage.English;
+        public LanguageDefinitionData LanguageDefinitionData;
 
         public List<Language> languages = new List<Language>();
 
         public string[] GetCategories(SystemLanguage systemLanguage)
         {
-            if (Instance == null || Instance.languages == null)
-            {
-                return null;
-            }
 
             var language = languages.Find(x => x.language == systemLanguage);
             if (language == null)
@@ -30,10 +26,6 @@ namespace Ultimate_Translation.Items
 
         public string[] GetKeys(SystemLanguage systemLanguage, int category)
         {
-            if (Instance == null || Instance.languages == null || Instance.languages.Count == 0)
-            {
-                return null;
-            }
 
             var language = languages.Find(x => x.language == systemLanguage);
             if (language == null)
@@ -85,35 +77,5 @@ namespace Ultimate_Translation.Items
         }
 
 #endif
-
-        private static LanguageSettings GetInstance()
-        {
-            if (instance == null)
-            {
-                instance = Resources.Load<LanguageSettings>("Language Settings");
-                if (instance == null)
-                {
-                    instance = CreateInstance<LanguageSettings>();
-#if UNITY_EDITOR
-                    string path = "Assets/Resources/Language Settings.asset";
-                    if (!Directory.Exists(path))
-                    {
-                        var dict = Path.GetDirectoryName(path);
-                        Directory.CreateDirectory(dict);
-                    }
-
-                    UnityEditor.AssetDatabase.CreateAsset(instance, path);
-                    UnityEditor.AssetDatabase.SaveAssets();
-                    UnityEditor.AssetDatabase.Refresh();
-                    instance.CreateLanguage(SystemLanguage.English);
-#endif
-                }
-            }
-            
-            if(instance.languages.Count == 0)
-                instance.LoadLanguages();
-
-            return instance;
-        }
     }
 }

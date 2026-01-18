@@ -16,8 +16,7 @@ namespace Ultimate_Translation.Editor
         private void OnEnable()
         {
             localizedComponent = (LocalizedComponent)target;
-            languages = LanguageSettings.Instance.languages;
-            languageVariable = localizedComponent.LanguageVariable;
+            // languageVariable = localizedComponent.LanguageVariable;
         }
 
         public override void OnInspectorGUI()

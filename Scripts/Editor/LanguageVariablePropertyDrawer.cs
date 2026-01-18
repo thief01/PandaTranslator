@@ -110,7 +110,7 @@ namespace Ultimate_Translation.Editor
 
             if (!shouldUpdate)
                 return;
-            categories = LanguageSettings.Instance.GetCategories(language);
+            // categories = LanguageSettings.Instance.GetCategories(language);
             lastUpdateTimeCategories = EditorApplication.timeSinceStartup;
         }
 
@@ -125,8 +125,7 @@ namespace Ultimate_Translation.Editor
             if (!shouldUpdate && !shouldUpdateKeys)
                 return;
 
-            keys = LanguageSettings.Instance.GetKeys(language, selectedCategory);
-
+            // keys = LanguageSettings.Instance.GetKeys(language, selectedCategory);
             lastUpdateTimeKeys = EditorApplication.timeSinceStartup;
         }
     }

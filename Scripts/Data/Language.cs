@@ -6,11 +6,13 @@ using UnityEngine;
 
 namespace Ultimate_Translation.Items
 {
-    [CreateAssetMenu(fileName = "New Language", menuName = "thief01/New Language")]
+    [CreateAssetMenu(fileName = "New Language", menuName = "Mimi Games/Language/New Language")]
     public class Language : ScriptableObject
     {
         public SystemLanguage language;
         public List<LanguageCategory> languageCategories;
+
+        public LanguageDefinitionData LanguageDefinitionData;
 
         public bool AddCategory(LanguageCategory languageCategory)
         {
@@ -71,6 +73,6 @@ namespace Ultimate_Translation.Items
             if (languageCategories == null || languageCategories.Count == 0)
                 return null;
             return languageCategories[category].languageItems.Select(ctg => ctg.key).ToArray();
-        }
+        } 
     }
 }

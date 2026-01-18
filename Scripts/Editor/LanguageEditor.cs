@@ -44,7 +44,7 @@ namespace Ultimate_Translation.Editor
         private void InitLangs()
         {
             AssetDatabase.Refresh();
-            langs = LanguageSettings.Instance.languages;
+            // langs = LanguageSettings.Instance.languages;
         }
 
         private void OnGUI()
@@ -63,27 +63,27 @@ namespace Ultimate_Translation.Editor
 
         private void UpdateLangList()
         {
-            LanguageSettings.Instance.LoadLanguages();
-            if (langs.Count != LanguageSettings.Instance.languages.Count)
-            {
-                langs = LanguageSettings.Instance.languages;
-                if (choicedLang >= langs.Count)
-                {
-                    choicedLang = langs.Count - 1;
-                }
-            }
+            // LanguageSettings.Instance.LoadLanguages();
+            // if (langs.Count != LanguageSettings.Instance.languages.Count)
+            // {
+                // langs = LanguageSettings.Instance.languages;
+                // if (choicedLang >= langs.Count)
+                // {
+                    // choicedLang = langs.Count - 1;
+                // }
+            // }
         }
 
         private void LanguageSelection()
         {
             GUILayout.BeginHorizontal();
-            var langs = LanguageSettings.Instance.languages.Select(ctg => $"{ctg.name} ({ctg.language})").ToArray();
-            var tempLang = EditorGUILayout.Popup(choicedLang, langs);
-            if (choicedLang != tempLang)
-            {
-                choicedLang = tempLang;
-                choicedCategory = 0;
-            }
+            // var langs = LanguageSettings.Instance.languages.Select(ctg => $"{ctg.name} ({ctg.language})").ToArray();
+            // var tempLang = EditorGUILayout.Popup(choicedLang, langs);
+            // if (choicedLang != tempLang)
+            // {
+                // choicedLang = tempLang;
+                // choicedCategory = 0;
+            // }
 
             GUILayout.EndHorizontal();
         }

@@ -19,7 +19,7 @@ namespace Ultimate_Translation
         private LanguageManager()
         {
             CurrentLanguage = (SystemLanguage) PlayerPrefs.GetInt("Language", (int) SystemLanguage.English);
-            CurrentLanguageData = LanguageSettings.Instance.languages.FirstOrDefault(x => x.language == CurrentLanguage);
+            // CurrentLanguageData = LanguageSettings.Instance.languages.FirstOrDefault(x => x.language == CurrentLanguage);
         }
         
         public void SetLanguage(SystemLanguage language)
@@ -27,7 +27,7 @@ namespace Ultimate_Translation
             CurrentLanguage = language;
             PlayerPrefs.SetInt("Language", (int)language);
             PlayerPrefs.Save();
-            CurrentLanguageData = LanguageSettings.Instance.languages.FirstOrDefault(x => x.language == language);
+            // CurrentLanguageData = LanguageSettings.Instance.languages.FirstOrDefault(x => x.language == language);
             LanguageChanged.Invoke();
         }
         
