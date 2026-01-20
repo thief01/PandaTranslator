@@ -1,10 +1,10 @@
 using System.Collections.Generic;
-using PandaTranslator.Runtime.Data;
-using PandaTranslator.Runtime.Translations;
+using PandaTranslator.Runtime.Components;
+using PandaTranslator.Runtime.Core;
 using UnityEditor;
 using UnityEngine;
 
-namespace PandaTranslator.Editor
+namespace PandaTranslator.Editor.Inspectors
 {
     [CustomEditor(typeof(LocalizedComponent), true)]
     public class LocalizedComponentEditor : UnityEditor.Editor
@@ -16,7 +16,7 @@ namespace PandaTranslator.Editor
         private void OnEnable()
         {
             localizedComponent = (LocalizedComponent)target;
-            // languageVariable = localizedComponent.LanguageVariable;
+            languageVariable = localizedComponent.LanguageVariable;
         }
 
         public override void OnInspectorGUI()

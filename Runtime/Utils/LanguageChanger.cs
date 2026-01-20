@@ -1,19 +1,19 @@
 using UnityEngine;
 
-namespace PandaTranslator.Runtime
+namespace PandaTranslator.Runtime.Utils
 {
     public class LanguageChanger : MonoBehaviour
     {
         [SerializeField] private SystemLanguage language;
-        private LanguageManager languageManager;
+        // private LanguageManager languageManager;
         private void Awake()
         {
-            languageManager = LanguageManager.Instance;
+            // languageManager = LanguageManager.Instance;
         }
 
         public void UseLanguage()
         {
-            languageManager.SetLanguage(language);
+            // languageManager.SetLanguage(language);
         }
     }
 }

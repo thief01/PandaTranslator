@@ -2,17 +2,20 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using PandaTranslator.Runtime.Core;
 using PandaTranslator.Runtime.Data;
 using UnityEditor;
 using UnityEngine;
 
-namespace PandaTranslator.Editor
+namespace PandaTranslator.Editor.Tools
 {
     public class LanguageEditor : EditorWindow
     {
         private Language UsingLanguage => langs[choicedLang];
 
         private List<Language> langs = new();
+
+        private LanguageSettings languageSettings;
         
 
         private int choicedLang = 0;
@@ -24,7 +27,7 @@ namespace PandaTranslator.Editor
         private string newTranslation = "New translation";
         private string errorMsg = "";
 
-        [MenuItem("Tools/thief01/Language Editor")]
+        [MenuItem("Mimi Games/Language Editor")]
         private static void OpenWindow()
         {
             LanguageEditor window = (LanguageEditor)GetWindow(typeof(LanguageEditor));
@@ -44,6 +47,7 @@ namespace PandaTranslator.Editor
         private void InitLangs()
         {
             AssetDatabase.Refresh();
+            languageSettings = LanguageManager.GetOrCreateLanguageSettings();
             // langs = LanguageSettings.Instance.languages;
         }
 
@@ -63,15 +67,14 @@ namespace PandaTranslator.Editor
 
         private void UpdateLangList()
         {
-            // LanguageSettings.Instance.LoadLanguages();
-            // if (langs.Count != LanguageSettings.Instance.languages.Count)
-            // {
-                // langs = LanguageSettings.Instance.languages;
-                // if (choicedLang >= langs.Count)
-                // {
-                    // choicedLang = langs.Count - 1;
-                // }
-            // }
+            if (langs.Count != languageSettings.languages.Count)
+            {
+                langs = languageSettings.languages;
+                if (choicedLang >= langs.Count)
+                {
+                    choicedLang = langs.Count - 1;
+                }
+            }
         }
 
         private void LanguageSelection()

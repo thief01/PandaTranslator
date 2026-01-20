@@ -1,7 +1,7 @@
 using PandaTranslator.Runtime.Data;
 using UnityEngine;
 
-namespace PandaTranslator.Runtime.Translations
+namespace PandaTranslator.Runtime.Components
 {
     public abstract class LocalizedComponent : MonoBehaviour
     {
@@ -14,7 +14,7 @@ namespace PandaTranslator.Runtime.Translations
         protected virtual void Awake()
         {
             RegisterEvents();
-            UpdateLanguageItem();
+            UpdateLang();
         }
 
         private void OnDestroy()
@@ -31,7 +31,7 @@ namespace PandaTranslator.Runtime.Translations
         public void SetLanguageVariable(LanguageVariable variable)
         {
             languageVariable = variable;
-            UpdateLanguageItem();
+            UpdateLang();
         }
 
         protected abstract void UpdateLang();
@@ -40,18 +40,12 @@ namespace PandaTranslator.Runtime.Translations
 
         private void RegisterEvents()
         {
-            LanguageManager.LanguageChanged.AddListener(UpdateLanguageItem);
+            // LanguageManager.LanguageChanged.AddListener(UpdateLanguageItem);
         }
 
         private void UnRegisterEvents()
         {
-            LanguageManager.LanguageChanged.RemoveListener(UpdateLanguageItem);
-        }
-
-        public void UpdateLanguageItem()
-        {
-            languageItem = LanguageManager.Instance.GetTranslation(languageVariable, GetTranslationType());
-            UpdateLang();
+            // LanguageManager.LanguageChanged.RemoveListener(UpdateLanguageItem);
         }
     }
 }

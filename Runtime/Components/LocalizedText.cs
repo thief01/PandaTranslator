@@ -3,7 +3,7 @@ using PandaTranslator.Runtime.Data;
 using TMPro;
 using UnityEngine;
 
-namespace PandaTranslator.Runtime.Translations
+namespace PandaTranslator.Runtime.Components
 {
     [RequireComponent(typeof(TMP_Text))]
     public class LocalizedText : LocalizedComponent

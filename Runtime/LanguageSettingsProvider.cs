@@ -1,3 +1,4 @@
+using PandaTranslator.Runtime.Core;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +18,7 @@ namespace PandaTranslator.Runtime
 
                 guiHandler = (searchContext) =>
                 {
-                    var settings = LanguageManager.Instance;
+                    // var settings = LanguageManager.Instance;
                     
                     // var availableLanguages = settings.languages.Where(ctg => ctg != null).Select(ctg => ctg.language.ToString()).ToArray();
 

@@ -1,7 +1,7 @@
 using PandaTranslator.Runtime.Data;
 using UnityEngine;
 
-namespace PandaTranslator.Runtime.Translations
+namespace PandaTranslator.Runtime.Components
 {
     public class LocalizedAudio : LocalizedComponent
     {

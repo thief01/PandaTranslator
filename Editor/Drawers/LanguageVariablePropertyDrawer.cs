@@ -1,8 +1,8 @@
-using PandaTranslator.Runtime.Translations;
+using PandaTranslator.Runtime.Components;
 using UnityEditor;
 using UnityEngine;
 
-namespace PandaTranslator.Editor
+namespace PandaTranslator.Editor.Drawers
 {
     [CustomPropertyDrawer(typeof(LanguageVariable))]
     public class LanguageVariablePropertyDrawer : PropertyDrawer

@@ -1,12 +1,22 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace PandaTranslator.Runtime.Data
 {
     public class LanguageData
     {
+        public UnityEvent OnLanguageDataChanged;
         public string translation;
         public Sprite sprite;
         public AudioClip audioClip;
+
+        public void UpdateFromLanguageData(LanguageData languageData)
+        {
+            translation = languageData.translation;
+            sprite = languageData.sprite;
+            audioClip = languageData.audioClip;
+            OnLanguageDataChanged.Invoke();
+        }
 
         public bool CheckType(LanguageTranslationType type)
         {

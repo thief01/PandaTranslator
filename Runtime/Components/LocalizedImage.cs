@@ -2,7 +2,7 @@ using PandaTranslator.Runtime.Data;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace PandaTranslator.Runtime.Translations
+namespace PandaTranslator.Runtime.Components
 {
     [RequireComponent(typeof(Image))]
     public class LocalizedImage : LocalizedComponent
