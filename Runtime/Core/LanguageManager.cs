@@ -10,18 +10,20 @@ namespace PandaTranslator.Runtime.Core
 {
     public class LanguageManager : ILanguageManager
     {
+        private LanguageDictionary languageDictionary;
         
         public ILanguage GetLanguage()
         {
-            throw new NotImplementedException();
+            return languageDictionary;
         }
-        public static LanguageSettings GetLanguageSettings()
+        
+        public LanguageSettings GetLanguageSettings()
         {
             var languageSettings = Resources.Load<LanguageSettings>("Language Settings");
             return languageSettings;
         }
 
-        public static LanguageSettings GetOrCreateLanguageSettings()
+        public LanguageSettings GetOrCreateLanguageSettings()
         {
             var languageSettings = GetLanguageSettings();
 
@@ -31,10 +33,6 @@ namespace PandaTranslator.Runtime.Core
                 Directory.CreateDirectory("Assets/Resources/");
                 AssetDatabase.CreateAsset(languageSettings, "Assets/Resources/Language Settings.asset");
 
-            }
-            else
-            {
-                throw new NullReferenceException("Language Settings not found");
             }
 
             FixLanguageSettings(languageSettings);
@@ -50,7 +48,5 @@ namespace PandaTranslator.Runtime.Core
             AssetDatabase.Refresh();
 #endif
         }
-
-
     }
 }

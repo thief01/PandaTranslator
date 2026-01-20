@@ -15,6 +15,7 @@ namespace PandaTranslator.Editor.Tools
 
         private List<Language> langs = new();
 
+        private LanguageManager languageManager;
         private LanguageSettings languageSettings;
         
 
@@ -47,8 +48,12 @@ namespace PandaTranslator.Editor.Tools
         private void InitLangs()
         {
             AssetDatabase.Refresh();
-            languageSettings = LanguageManager.GetOrCreateLanguageSettings();
-            // langs = LanguageSettings.Instance.languages;
+            if (languageManager == null)
+            {
+                languageManager = new LanguageManager();
+            }
+            languageSettings = languageManager.GetOrCreateLanguageSettings();
+            langs = languageSettings.languages;
         }
 
         private void OnGUI()
@@ -80,13 +85,13 @@ namespace PandaTranslator.Editor.Tools
         private void LanguageSelection()
         {
             GUILayout.BeginHorizontal();
-            // var langs = LanguageSettings.Instance.languages.Select(ctg => $"{ctg.name} ({ctg.language})").ToArray();
-            // var tempLang = EditorGUILayout.Popup(choicedLang, langs);
-            // if (choicedLang != tempLang)
-            // {
-                // choicedLang = tempLang;
-                // choicedCategory = 0;
-            // }
+            var langs = languageSettings.languages.Select(ctg => $"{ctg.name} ({ctg.language})").ToArray();
+            var tempLang = EditorGUILayout.Popup(choicedLang, langs);
+            if (choicedLang != tempLang)
+            {
+                choicedLang = tempLang;
+                choicedCategory = 0;
+            }
 
             GUILayout.EndHorizontal();
         }

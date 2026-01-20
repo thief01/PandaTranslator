@@ -1933,7 +1933,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 36dee99b3db5b974c82df5e7d9e13781, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 36dee99b3db5b974c82df5e7d9e13781, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -2599,7 +2599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageVariable:
-    PreviewLanguage: 0
+    PreviewLanguage: 26
     Category: 0
     Key: 3
     CategoryName: Demo
@@ -3370,7 +3370,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dcb4b19834176824a9f3f2f10c754916, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: dcb4b19834176824a9f3f2f10c754916, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -3518,7 +3518,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dcb4b19834176824a9f3f2f10c754916, type: 3}
+  m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: dcb4b19834176824a9f3f2f10c754916, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
