@@ -6,7 +6,6 @@ namespace PandaTranslator.Runtime.Core
 {
     public class LanguageSettings : ScriptableObject
     {
-        public SystemLanguage CurrentLanguage = SystemLanguage.English;
         public SystemLanguage DefaultLanguage = SystemLanguage.English;
         public LanguageDefinitionData LanguageDefinitionData;
 
