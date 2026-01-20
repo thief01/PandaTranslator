@@ -7,11 +7,4 @@ namespace PandaTranslator.Runtime.Data
     {
         public List<LanguageCategoryDefinition> Categories = new List<LanguageCategoryDefinition>();
     }
-
-    [System.Serializable]
-    public class LanguageCategoryDefinition
-    {
-        public string Name;
-        public List<string> Keys;
-    }
 }
