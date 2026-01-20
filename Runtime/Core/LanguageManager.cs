@@ -22,7 +22,7 @@ namespace PandaTranslator.Runtime.Core
             var languageSettings = Resources.Load<LanguageSettings>("Language Settings");
             return languageSettings;
         }
-
+#if UNITY_EDITOR
         public LanguageSettings GetOrCreateLanguageSettings()
         {
             var languageSettings = GetLanguageSettings();
@@ -41,12 +41,12 @@ namespace PandaTranslator.Runtime.Core
 
         private static void FixLanguageSettings(LanguageSettings languageSettings)
         {
-#if UNITY_EDITOR
+
             var languages = Resources.LoadAll<Language>("Languages/");
             languageSettings.languages = languages.ToList();
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
-#endif
         }
+#endif
     }
 }
