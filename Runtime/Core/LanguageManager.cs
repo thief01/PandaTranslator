@@ -47,7 +47,6 @@ namespace PandaTranslator.Runtime.Core
 
         public void SetLanguage(SystemLanguage language)
         {
-            SystemLanguage.
             var newLanguage = languageSettings.languages.Find(ctg => ctg.language == language);
             if (newLanguage == null)
             {
