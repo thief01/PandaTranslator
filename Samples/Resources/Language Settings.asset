@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb324f62599bb4148b8c9acd2473d2a9, type: 3}
   m_Name: Language Settings
   m_EditorClassIdentifier: 
-  DefaultLanguage: 10
+  DefaultLanguage: 27
   LanguageDefinitionData:
     Categories:
     - Name: UI

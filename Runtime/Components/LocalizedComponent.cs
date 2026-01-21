@@ -25,7 +25,7 @@ namespace PandaTranslator.Runtime.Components
             UnRegisterEvents();
             if (languageData == null)
             {
-                Debug.Log("LanguageData is null");
+                Debug.LogWarning("LanguageData is null");
                 return;
             }
             languageItem = languageData;
@@ -39,7 +39,7 @@ namespace PandaTranslator.Runtime.Components
         {
             if (languageItem == null)
             {
-                Debug.LogError("LanguageData is null");
+                Debug.LogWarning("LanguageData is null");
                 return;
             }
             languageItem.OnLanguageDataChanged.AddListener(UpdateLang);
@@ -49,7 +49,7 @@ namespace PandaTranslator.Runtime.Components
         {
             if (languageItem == null)
             {
-                Debug.LogError("LanguageData is null");
+                Debug.LogWarning("LanguageData is null");
                 return;
             }
             languageItem.OnLanguageDataChanged.RemoveListener(UpdateLang);
