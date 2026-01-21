@@ -1249,7 +1249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfac6004a95edcc4ab8307ebbba403ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  language: 27
+  language: 10
 --- !u!114 &617818494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2390,7 +2390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfac6004a95edcc4ab8307ebbba403ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  language: 10
+  language: 27
 --- !u!114 &1431871169
 MonoBehaviour:
   m_ObjectHideFlags: 0
