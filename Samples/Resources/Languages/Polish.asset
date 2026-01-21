@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 719c68e7f96adff4da4c6076e01cb38a, type: 3}
+  m_Name: Polish
+  m_EditorClassIdentifier: 
+  language: 27
+  languageCategories:
+  - categoryName: UI
+    languageItems:
+    - OnLanguageDataChanged:
+        m_PersistentCalls:
+          m_Calls: []
+      translation: Polish
+      sprite: {fileID: 0}
+      audioClip: {fileID: 0}
+      key: LanguageName
+    - OnLanguageDataChanged:
+        m_PersistentCalls:
+          m_Calls: []
+      translation: "Obecny j\u0119zyk"
+      sprite: {fileID: 21300000, guid: 3a96cc82aeb450d49ae28fbd5a000bab, type: 3}
+      audioClip: {fileID: 0}
+      key: CurrentLanguage
+    - OnLanguageDataChanged:
+        m_PersistentCalls:
+          m_Calls: []
+      translation: Polski
+      sprite: {fileID: 21300000, guid: 3a96cc82aeb450d49ae28fbd5a000bab, type: 3}
+      audioClip: {fileID: 0}
+      key: Polish
+    - OnLanguageDataChanged:
+        m_PersistentCalls:
+          m_Calls: []
+      translation: Angielski
+      sprite: {fileID: 21300000, guid: ac246f6b1fea9f74dad3c50a6600916e, type: 3}
+      audioClip: {fileID: 0}
+      key: English
+    - OnLanguageDataChanged:
+        m_PersistentCalls:
+          m_Calls: []
+      translation: "Odwt\xF3rz"
+      sprite: {fileID: 0}
+      audioClip: {fileID: 0}
+      key: Play
+    - OnLanguageDataChanged:
+        m_PersistentCalls:
+          m_Calls: []
+      translation: "U\u017Cyj"
+      sprite: {fileID: 0}
+      audioClip: {fileID: 0}
+      key: Use

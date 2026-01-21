@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb324f62599bb4148b8c9acd2473d2a9, type: 3}
+  m_Name: Language Settings
+  m_EditorClassIdentifier: 
+  DefaultLanguage: 10
+  LanguageDefinitionData:
+    Categories:
+    - Name: UI
+      Keys:
+      - LanguageName
+      - CurrentLanguage
+      - English
+      - Polish
+      - Play
+      - Use
+  languages:
+  - {fileID: 11400000, guid: 5e703c0e58289f24f9a90b1f2bd97140, type: 2}
+  - {fileID: 11400000, guid: c750f93128bba1345bfb944a65647bac, type: 2}
