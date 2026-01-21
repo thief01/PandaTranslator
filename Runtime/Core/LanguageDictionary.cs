@@ -14,6 +14,7 @@ namespace PandaTranslator.Runtime.Core
 
         public LanguageDictionary(LanguageSettings languageSettings)
         {
+            this.languageSettings = languageSettings;
             items = new Dictionary<string, LanguageItem>();
             InitializeDictionary();
         }
