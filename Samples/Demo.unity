@@ -170,7 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageVariable:
-    PreviewLanguage: 10
+    PreviewLanguage: 0
     Category: 0
     Key: 2
     CategoryName: Demo
@@ -2599,7 +2599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageVariable:
-    PreviewLanguage: 26
+    PreviewLanguage: 0
     Category: 0
     Key: 3
     CategoryName: Demo

@@ -9,25 +9,8 @@ using UnityEngine;
 
 namespace PandaTranslator.Editor.Tools
 {
-    public class LanguageEditor : EditorWindow
+    public partial class LanguageEditor : EditorWindow
     {
-        private Language UsingLanguage => langs[choicedLang];
-
-        private List<Language> langs = new();
-
-        private LanguageManager languageManager;
-        private LanguageSettings languageSettings;
-        
-
-        private int choicedLang = 0;
-        private int choicedCategory = 0;
-        private Vector2 scrollView;
-
-        private string newCategory = "New category";
-        private string newKey = "New key";
-        private string newTranslation = "New translation";
-        private string errorMsg = "";
-
         [MenuItem("Mimi Games/Language Editor")]
         private static void OpenWindow()
         {
@@ -37,60 +20,41 @@ namespace PandaTranslator.Editor.Tools
 
         private void OnValidate()
         {
-            InitLangs();
+            InitializeState();
         }
 
         private void OnEnable()
         {
-            InitLangs();
-        }
-
-        private void InitLangs()
-        {
-            AssetDatabase.Refresh();
-            if (languageManager == null)
-            {
-                languageManager = new LanguageManager();
-            }
-            languageSettings = languageManager.GetOrCreateLanguageSettings();
-            langs = languageSettings.languages;
+            InitializeState();
         }
 
         private void OnGUI()
         {
-            UpdateLangList();
             LanguageSelection();
             CategorySelection();
             AddingTranslation();
 
-            scrollView = GUILayout.BeginScrollView(scrollView);
+            scrollPosition = GUILayout.BeginScrollView(scrollPosition);
             DrawLangView();
             GUILayout.EndScrollView();
 
-            EditorUtility.SetDirty(UsingLanguage);
+            EditorUtility.SetDirty(currentLanguage);
         }
-
-        private void UpdateLangList()
-        {
-            if (langs.Count != languageSettings.languages.Count)
-            {
-                langs = languageSettings.languages;
-                if (choicedLang >= langs.Count)
-                {
-                    choicedLang = langs.Count - 1;
-                }
-            }
-        }
-
+        
         private void LanguageSelection()
         {
             GUILayout.BeginHorizontal();
             var langs = languageSettings.languages.Select(ctg => $"{ctg.name} ({ctg.language})").ToArray();
-            var tempLang = EditorGUILayout.Popup(choicedLang, langs);
-            if (choicedLang != tempLang)
+            var tempLang = EditorGUILayout.Popup(selectedLanguageIndex, langs);
+            if (selectedLanguageIndex != tempLang)
             {
-                choicedLang = tempLang;
-                choicedCategory = 0;
+                selectedLanguageIndex = tempLang;
+                selectedCategoryIndex = 0;
+            }
+
+            if (GUILayout.Button("Add language"))
+            {
+                
             }
 
             GUILayout.EndHorizontal();
@@ -99,31 +63,26 @@ namespace PandaTranslator.Editor.Tools
         private void CategorySelection()
         {
             GUILayout.BeginHorizontal();
-            var categories = UsingLanguage.languageCategories.Select(ctg => ctg.categoryName).ToArray();
-            var tempCategory = EditorGUILayout.Popup(choicedCategory, categories);
-            if (choicedCategory != tempCategory)
+            var categories = languageSettings.LanguageDefinitionData.Categories.Select(category => category.Name).ToArray();
+            var tempCategory = EditorGUILayout.Popup(selectedCategoryIndex, categories);
+            if (selectedCategoryIndex != tempCategory)
             {
-                choicedCategory = tempCategory;
+                selectedCategoryIndex = tempCategory;
             }
 
-            newCategory = EditorGUILayout.TextField(newCategory);
+            newCategoryName = EditorGUILayout.TextField(newCategoryName);
             if (GUILayout.Button("Add category"))
             {
-                errorMsg = "";
-                if (!UsingLanguage.AddCategory(newCategory))
-                {
-                    errorMsg = "Category already exists";
-                    return;
-                }
-
-                choicedCategory = UsingLanguage.languageCategories.Count - 1;
+                errorMessage = "";
+                var categoryDefinition = helper.AddNewCategory(newCategoryName);
+                selectedCategoryIndex = helper.GetCategoryIndex(categoryDefinition);
             }
 
-            if (UsingLanguage.languageCategories.Count > 0 && GUILayout.Button("Remove category"))
+            if (currentLanguage.languageCategories.Count > 0 && GUILayout.Button("Remove category"))
             {
-                errorMsg = "";
-                UsingLanguage.languageCategories.Remove(UsingLanguage.languageCategories[choicedCategory]);
-                choicedCategory = 0;
+                errorMessage = "";
+                helper.RemoveCategory(selectedCategoryIndex);
+                selectedCategoryIndex = 0;
                 return;
             }
 
@@ -134,15 +93,21 @@ namespace PandaTranslator.Editor.Tools
         {
             GUILayout.BeginHorizontal();
 
-            newKey = EditorGUILayout.TextField(newKey);
-            newTranslation = EditorGUILayout.TextField(newTranslation);
+            newKeyName = EditorGUILayout.TextField(newKeyName);
+            newTranslationContent = EditorGUILayout.TextField(newTranslationContent);
             if (GUILayout.Button("Add translation"))
             {
-                errorMsg = "";
-                if (!UsingLanguage.languageCategories[choicedCategory].AddLanguageItem(newKey, newTranslation))
+                errorMessage = "";
+
+                if (!helper.AddNewKey(selectedCategoryIndex, newKeyName))
                 {
-                    errorMsg = "Translation already exists";
+                    errorMessage = "Translation already exists";
                 }
+
+                var categoryDefinition = helper.GetCategory(selectedCategoryIndex);
+                var keyId = categoryDefinition.Keys.FindIndex(ctg => ctg == newKeyName);
+                var languageItem = currentLanguage.GetLanguageItem(selectedCategoryIndex, keyId);
+                languageItem.translation = newTranslationContent;
             }
 
             GUILayout.EndHorizontal();
@@ -150,19 +115,19 @@ namespace PandaTranslator.Editor.Tools
 
         private void DrawLangView()
         {
-            if (!string.IsNullOrEmpty(errorMsg))
+            if (!string.IsNullOrEmpty(errorMessage))
             {
-                EditorGUILayout.HelpBox(errorMsg, MessageType.Error);
+                EditorGUILayout.HelpBox(errorMessage, MessageType.Error);
             }
 
-            var categories = UsingLanguage.languageCategories;
+            var categories = currentLanguage.languageCategories;
             if (categories.Count == 0)
             {
-                errorMsg = "No categories found";
+                errorMessage = "No categories found";
                 return;
             }
 
-            var translations = UsingLanguage.languageCategories[choicedCategory].languageItems;
+            var translations = currentLanguage.languageCategories[selectedCategoryIndex].languageItems;
             translations = translations.OrderBy(ctg => ctg.key).ToList();
 
             foreach (var translation in translations)
@@ -176,6 +141,7 @@ namespace PandaTranslator.Editor.Tools
         {
             GUILayout.BeginHorizontal();
 
+            
             EditorGUILayout.LabelField(languageItem.key);
             GUILayoutOption[] options = { GUILayout.Width(150), GUILayout.Height(50) };
             languageItem.translation = EditorGUILayout.TextArea(languageItem.translation, options);
@@ -185,7 +151,7 @@ namespace PandaTranslator.Editor.Tools
                 (Sprite)EditorGUILayout.ObjectField(languageItem.sprite, typeof(Sprite), false, options);
             if (GUILayout.Button(buttonActionText, GUILayout.Width(50), GUILayout.Height(50)))
             {
-                errorMsg = "";
+                errorMessage = "";
                 onButtonClick.Invoke(languageItem);
             }
 
@@ -194,7 +160,8 @@ namespace PandaTranslator.Editor.Tools
 
         private void RemoveTranslation(LanguageItem languageItem)
         {
-            UsingLanguage.languageCategories[choicedCategory].languageItems.Remove(languageItem);
+            var categoryName = helper.GetCategory(selectedCategoryIndex);
+            helper.RemoveKey(categoryName.Name, languageItem.key);
         }
     }
 }

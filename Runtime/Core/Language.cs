@@ -54,12 +54,12 @@ namespace PandaTranslator.Runtime.Core
 
         public LanguageItem GetLanguageItem(int categoryId, int keyId)
         {
-            throw new NotImplementedException();
+            return languageCategories[categoryId].languageItems[keyId];
         }
 
         public LanguageItem GetLanguageItem(LanguageVariable languageVariable)
         {
-            throw new NotImplementedException();
+            return languageCategories[languageVariable.Category].languageItems[languageVariable.Key];
         }
     }
 }

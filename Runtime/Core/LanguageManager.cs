@@ -23,16 +23,20 @@ namespace PandaTranslator.Runtime.Core
             return languageSettings;
         }
 #if UNITY_EDITOR
+        public static LanguageSettings LazyLoadLanguageSettings()
+        {
+            var languageSettings = Resources.Load<LanguageSettings>("Language Settings");
+            return languageSettings;
+        }
         public LanguageSettings GetOrCreateLanguageSettings()
         {
             var languageSettings = GetLanguageSettings();
 
-            if (languageSettings == null && Application.isEditor)
+            if (languageSettings == null)
             {
                 languageSettings = ScriptableObject.CreateInstance<LanguageSettings>();
                 Directory.CreateDirectory("Assets/Resources/");
                 AssetDatabase.CreateAsset(languageSettings, "Assets/Resources/Language Settings.asset");
-
             }
 
             FixLanguageSettings(languageSettings);

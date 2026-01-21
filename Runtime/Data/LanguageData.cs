@@ -10,6 +10,11 @@ namespace PandaTranslator.Runtime.Data
         public Sprite sprite;
         public AudioClip audioClip;
 
+        public LanguageData()
+        {
+            
+        }
+        
         public void UpdateFromLanguageData(LanguageData languageData)
         {
             translation = languageData.translation;

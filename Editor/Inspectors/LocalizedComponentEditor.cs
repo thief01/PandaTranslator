@@ -17,21 +17,25 @@ namespace PandaTranslator.Editor.Inspectors
         {
             localizedComponent = (LocalizedComponent)target;
             languageVariable = localizedComponent.LanguageVariable;
+            var languageSettings = LanguageManager.LazyLoadLanguageSettings();
+            if (languageSettings == null)
+                return;
+            languages = languageSettings.languages;
         }
 
         public override void OnInspectorGUI()
         {
             base.OnInspectorGUI();
 
+            if (languages == null || languages.Count == 0)
+            {
+                GUILayout.Label("No languages found");
+                return;
+            }
+
             if (GUILayout.Button("Test lang"))
             {
-                var lang = languages.Find(x => x.language == languageVariable.PreviewLanguage);
-                if (lang == null)
-                {
-                    Debug.LogError("Language not found");
-                    return;
-                }
-
+                var lang = languages[languageVariable.PreviewLanguage];
                 var langItem = lang.GetLanguageItem(languageVariable);
                 localizedComponent.SetLanguageData(langItem);
             }

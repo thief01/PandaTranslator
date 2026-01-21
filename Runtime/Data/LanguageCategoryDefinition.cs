@@ -6,6 +6,6 @@ namespace PandaTranslator.Runtime.Data
     public class LanguageCategoryDefinition
     {
         public string Name;
-        public List<string> Keys;
+        public List<string> Keys = new List<string>();
     }
 }

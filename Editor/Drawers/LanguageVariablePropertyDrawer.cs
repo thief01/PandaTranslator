@@ -1,4 +1,6 @@
+using System.Linq;
 using PandaTranslator.Runtime.Components;
+using PandaTranslator.Runtime.Core;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,25 +19,32 @@ namespace PandaTranslator.Editor.Drawers
             }
         };
 
+        private string[] languages;
         private string[] categories;
         private string[] keys;
+        private double lastUpdateTimeLanguages;
         private double lastUpdateTimeCategories;
         private double lastUpdateTimeKeys;
-        private SystemLanguage language;
+        private int selectedLanguage;
         private int selectedCategory;
         private int selectedKey;
         private bool shouldUpdateKeys;
 
+        private LanguageManager languageManager;
+        private LanguageSettings languageSettings;
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             position.height = EditorGUIUtility.singleLineHeight;
+            if (languageManager == null)
+                languageManager = new LanguageManager();
+            if (languageSettings == null)
+                languageSettings = languageManager.GetLanguageSettings();
 
-            var languageProperty = property.FindPropertyRelative("PreviewLanguage");
-            languageProperty.intValue = (int)(SystemLanguage)EditorGUI.EnumPopup(position, languageProperty.displayName,
-                (SystemLanguage)languageProperty.intValue);
-            language = (SystemLanguage)languageProperty.intValue;
+            UpdateLanguagesCache();
             UpdateCategoriesCache();
             UpdateKeysCache();
+            DrawLanguages(position, property);
             if (!DrawCategories(position, property))
                 return;
             DrawKeys(position, property);
@@ -54,6 +63,13 @@ namespace PandaTranslator.Editor.Drawers
             }
 
             return EditorGUIUtility.singleLineHeight * 3;
+        }
+
+        private void DrawLanguages(Rect position, SerializedProperty property)
+        {
+            var languageProperty = property.FindPropertyRelative("PreviewLanguage");
+            selectedLanguage =EditorGUI.Popup(position, languageProperty.intValue, languages);
+            languageProperty.intValue = selectedLanguage;
         }
 
         private bool DrawCategories(Rect position, SerializedProperty property)
@@ -99,6 +115,21 @@ namespace PandaTranslator.Editor.Drawers
             return true;
         }
 
+        private void UpdateLanguagesCache()
+        {
+            var shouldUpdate = (EditorApplication.timeSinceStartup - lastUpdateTimeLanguages > 5);
+            if (categories == null || categories.Length == 0)
+            {
+                shouldUpdate = true;
+            }
+
+            if (!shouldUpdate)
+                return;
+            languages = languageSettings.languages.Select(ctg => ctg.language.ToString())
+                .ToArray();
+            lastUpdateTimeLanguages = EditorApplication.timeSinceStartup;
+        }
+
         private void UpdateCategoriesCache()
         {
             var shouldUpdate = (EditorApplication.timeSinceStartup - lastUpdateTimeCategories > 5);
@@ -109,7 +140,7 @@ namespace PandaTranslator.Editor.Drawers
 
             if (!shouldUpdate)
                 return;
-            // categories = LanguageSettings.Instance.GetCategories(language);
+            categories = languageSettings.LanguageDefinitionData.Categories.Select(cat => cat.Name).ToArray();
             lastUpdateTimeCategories = EditorApplication.timeSinceStartup;
         }
 
@@ -124,7 +155,7 @@ namespace PandaTranslator.Editor.Drawers
             if (!shouldUpdate && !shouldUpdateKeys)
                 return;
 
-            // keys = LanguageSettings.Instance.GetKeys(language, selectedCategory);
+            keys = languageSettings.LanguageDefinitionData.Categories[selectedCategory].Keys.ToArray();
             lastUpdateTimeKeys = EditorApplication.timeSinceStartup;
         }
     }
