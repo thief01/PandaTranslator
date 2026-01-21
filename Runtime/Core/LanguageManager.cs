@@ -11,65 +11,55 @@ namespace PandaTranslator.Runtime.Core
 {
     public class LanguageManager : ILanguageManager, ILanguage
     {
-        private LanguageDictionary languageDictionary;
-        private LanguageSettings languageSettings;
+        public LanguageDictionary LanguageDictionary { get; private set; }
+        public LanguageSettings LanguageSettings { get; private set; }
 
         public LanguageManager()
         {
-            languageSettings = GetLanguageSettings();
-            languageDictionary = new LanguageDictionary(languageSettings);
+            LanguageDictionary = new LanguageDictionary(LanguageSettings);
+            LanguageSettings = LanguageSettings.LoadLanguageSettings();
         }
         
         public ILanguage GetLanguage()
         {
-            return languageDictionary;
+            return LanguageDictionary;
         }
         
         public LanguageItem GetLanguageItem(string category, string key)
         {
-            return languageDictionary.GetLanguageItem(category, key);
+            return LanguageDictionary.GetLanguageItem(category, key);
         }
 
         public LanguageItem GetLanguageItem(string path)
         {
-            return languageDictionary.GetLanguageItem(path);
+            return LanguageDictionary.GetLanguageItem(path);
         }
 
         public LanguageItem GetLanguageItem(int categoryId, int keyId)
         {
-            return languageDictionary.GetLanguageItem(categoryId, keyId);
+            return LanguageDictionary.GetLanguageItem(categoryId, keyId);
         }
 
         public LanguageItem GetLanguageItem(LanguageVariable languageVariable)
         {
-            return languageDictionary.GetLanguageItem(languageVariable);
+            return LanguageDictionary.GetLanguageItem(languageVariable);
         }
 
         public void SetLanguage(SystemLanguage language)
         {
-            var newLanguage = languageSettings.languages.Find(ctg => ctg.language == language);
+            var newLanguage = LanguageSettings.languages.Find(ctg => ctg.language == language);
             if (newLanguage == null)
             {
                 Debug.LogError("Could not find language " + language);
                 return;
             }
-            languageDictionary.ChangeLanguage(newLanguage);
+            LanguageDictionary.ChangeLanguage(newLanguage);
         }
         
-        public LanguageSettings GetLanguageSettings()
-        {
-            var languageSettings = Resources.Load<LanguageSettings>("Language Settings");
-            return languageSettings;
-        }
 #if UNITY_EDITOR
-        public static LanguageSettings LazyLoadLanguageSettings()
-        {
-            var languageSettings = Resources.Load<LanguageSettings>("Language Settings");
-            return languageSettings;
-        }
         public LanguageSettings GetOrCreateLanguageSettings()
         {
-            var languageSettings = GetLanguageSettings();
+            var languageSettings = LanguageSettings.LoadLanguageSettings();
 
             if (languageSettings == null)
             {
@@ -84,7 +74,6 @@ namespace PandaTranslator.Runtime.Core
 
         private static void FixLanguageSettings(LanguageSettings languageSettings)
         {
-
             var languages = Resources.LoadAll<Language>("Languages/");
             languageSettings.languages = languages.ToList();
             AssetDatabase.SaveAssets();

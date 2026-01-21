@@ -10,5 +10,11 @@ namespace PandaTranslator.Runtime.Core
         public LanguageDefinitionData LanguageDefinitionData;
 
         public List<Language> languages = new List<Language>();
+
+        public static LanguageSettings LoadLanguageSettings()
+        {
+            var languageSettings = Resources.Load<LanguageSettings>("Language Settings");
+            return languageSettings;
+        }
     }
 }

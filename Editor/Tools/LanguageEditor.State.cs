@@ -32,7 +32,7 @@ namespace PandaTranslator.Editor.Tools
         private void InitializeState()
         {
             AssetDatabase.Refresh();
-            languageSettings = LanguageManager.LazyLoadLanguageSettings();
+            languageSettings = LanguageSettings.LoadLanguageSettings();
             helper = new LanguageEditorHelper(languageSettings);
         }
         

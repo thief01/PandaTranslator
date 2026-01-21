@@ -29,17 +29,14 @@ namespace PandaTranslator.Editor.Drawers
         private int selectedCategory;
         private int selectedKey;
         private bool shouldUpdateKeys;
-
-        private LanguageManager languageManager;
+        
         private LanguageSettings languageSettings;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             position.height = EditorGUIUtility.singleLineHeight;
-            if (languageManager == null)
-                languageManager = new LanguageManager();
             if (languageSettings == null)
-                languageSettings = languageManager.GetLanguageSettings();
+                languageSettings = LanguageSettings.LoadLanguageSettings();
 
             UpdateLanguagesCache();
             UpdateCategoriesCache();

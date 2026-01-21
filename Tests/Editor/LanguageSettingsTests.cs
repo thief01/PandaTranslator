@@ -18,7 +18,7 @@ namespace PandaTranslator.Tests.Editor
         public void HasLanguagesTest()
         {
             var languageManager = new LanguageManager();
-            var languageSettings = languageManager.GetLanguageSettings();
+            var languageSettings = LanguageSettings.LoadLanguageSettings();
             Assert.IsNotNull(languageSettings);
             
             Assert.IsNotNull(languageSettings.languages);

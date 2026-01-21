@@ -21,7 +21,7 @@ namespace PandaTranslator.Editor.Tools
             languageName = EditorGUILayout.TextField("Language name", languageName);
             if (GUILayout.Button("Create"))
             {
-                var languageSettings = LanguageManager.LazyLoadLanguageSettings();
+                var languageSettings = LanguageSettings.LoadLanguageSettings();
                 var languageHelper = new LanguageEditorHelper(languageSettings);
                 languageHelper.AddNewLanguage(languageName, systemLanguage);
                 Close();
