@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.IO;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using PandaTranslator.Runtime.Core;
 using PandaTranslator.Runtime.Data;
@@ -34,7 +35,12 @@ namespace PandaTranslator.Editor.Tools
                 });
             }
 
-            AssetDatabase.CreateAsset(newLanguage, "Assets/Resources/Languages/" + name + ".asset");
+            var path = "Assets/Resources/Languages/";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            AssetDatabase.CreateAsset(newLanguage, path + name + ".asset");
             var language = Resources.Load<Language>("Languages/" + name);
             languageSettings.languages.Add(language);
             EditorUtility.SetDirty(languageSettings);
