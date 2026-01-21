@@ -5,7 +5,7 @@ namespace PandaTranslator.Runtime.Data
 {
     public class LanguageData
     {
-        public UnityEvent OnLanguageDataChanged;
+        public UnityEvent OnLanguageDataChanged = new UnityEvent();
         public string translation;
         public Sprite sprite;
         public AudioClip audioClip;
