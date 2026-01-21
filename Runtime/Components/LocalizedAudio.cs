@@ -19,10 +19,5 @@ namespace PandaTranslator.Runtime.Components
                 audioSource = GetComponent<AudioSource>();
             audioSource.clip = languageItem.audioClip;
         }
-
-        protected override LanguageTranslationType GetTranslationType()
-        {
-            return LanguageTranslationType.Audio;
-        }
     }
 }

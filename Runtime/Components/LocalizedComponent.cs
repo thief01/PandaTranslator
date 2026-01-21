@@ -13,7 +13,6 @@ namespace PandaTranslator.Runtime.Components
 
         protected virtual void Awake()
         {
-            RegisterEvents();
             UpdateLang();
         }
 
@@ -26,26 +25,19 @@ namespace PandaTranslator.Runtime.Components
         {
             languageItem = languageData;
             UpdateLang();
-        }
-
-        public void SetLanguageVariable(LanguageVariable variable)
-        {
-            languageVariable = variable;
-            UpdateLang();
+            RegisterEvents();
         }
 
         protected abstract void UpdateLang();
-
-        protected abstract LanguageTranslationType GetTranslationType();
-
+        
         private void RegisterEvents()
         {
-            // LanguageManager.LanguageChanged.AddListener(UpdateLanguageItem);
+            languageItem.OnLanguageDataChanged.AddListener(UpdateLang);
         }
 
         private void UnRegisterEvents()
         {
-            // LanguageManager.LanguageChanged.RemoveListener(UpdateLanguageItem);
+            languageItem.OnLanguageDataChanged.RemoveListener(UpdateLang);
         }
     }
 }

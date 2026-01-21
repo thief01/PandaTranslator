@@ -24,10 +24,5 @@ namespace PandaTranslator.Runtime.Components
             if (setNativeSize)
                 image.SetNativeSize();
         }
-        
-        protected override LanguageTranslationType GetTranslationType()
-        {
-            return LanguageTranslationType.Image;
-        }
     }
 }

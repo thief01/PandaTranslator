@@ -35,12 +35,7 @@ namespace PandaTranslator.Runtime.Components
 
             tmpText.text = languageItem.translation;
         }
-
-        protected override LanguageTranslationType GetTranslationType()
-        {
-            return LanguageTranslationType.Text;
-        }
-
+        
         private string FormatText()
         {
             var text = "";
