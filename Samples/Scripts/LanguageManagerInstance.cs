@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PandaTranslator.Samples.Scripts
 {
-    public class LanguageManagerInstance
+    public static class LanguageManagerInstance
     {
         public static LanguageManager LanguageManager
         {

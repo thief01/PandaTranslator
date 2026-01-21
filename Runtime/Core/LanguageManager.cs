@@ -16,8 +16,8 @@ namespace PandaTranslator.Runtime.Core
 
         public LanguageManager()
         {
-            LanguageDictionary = new LanguageDictionary(LanguageSettings);
             LanguageSettings = LanguageSettings.LoadLanguageSettings();
+            LanguageDictionary = new LanguageDictionary(LanguageSettings);
         }
         
         public ILanguage GetLanguage()
