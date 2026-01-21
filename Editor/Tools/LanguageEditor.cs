@@ -52,7 +52,7 @@ namespace PandaTranslator.Editor.Tools
                 selectedCategoryIndex = 0;
             }
 
-            if (GUILayout.Button("Add language"))
+            if (GUILayout.Button("Create New Language"))
             {
                 NewLanguageWindow.OpenWindow();
             }
