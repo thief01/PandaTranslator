@@ -38,6 +38,7 @@ namespace PandaTranslator.Editor.Inspectors
                 var lang = languages[languageVariable.PreviewLanguage];
                 var langItem = lang.GetLanguageItem(languageVariable);
                 localizedComponent.SetLanguageData(langItem);
+                SceneView.RepaintAll();
             }
         }
     }
