@@ -70,9 +70,6 @@ image.sprite = icon.sprite;
 ```csharp
 // Via code
 languageManager.SetLanguage(SystemLanguage.Polish);
-
-// Via LanguageSwitcher component
-// Simply trigger the public method or use the included UI dropdown
 ```
 
 ## 🎯 Key Concepts
@@ -92,9 +89,8 @@ On language switch, PandaTranslator rebuilds an internal dictionary for O(1) loo
 ## 📖 Documentation
 
 For detailed documentation, see:
-- [Full Documentation](link-to-docs) - Complete API reference and advanced features
+- [Full Documentation](Documentation/PandaTranslator.md) - Complete API reference and advanced features
 - [CHANGELOG.md](CHANGELOG.md) - Version history and updates
-- [Examples](link-to-examples) - Sample projects and use cases
 
 ## ⚠️ Important Notes
 
@@ -102,13 +98,9 @@ For detailed documentation, see:
 - All category and key operations are automatically synchronized across languages
 - The LanguageManager should be initialized before accessing any localized content
 
-## 🤝 Contributing
-
-[Add your contribution guidelines if applicable]
-
 ## 📄 License
 
-[Add your license information]
+MIT License
 
 ## 🐛 Known Issues
 
