@@ -4,9 +4,10 @@ namespace PandaTranslator.Samples.Scripts
 {
     public class ChangeLanguage : MonoBehaviour
     {
-        public void SwapLanguage(SystemLanguage systemLanguage)
+        [SerializeField] private SystemLanguage language;
+        public void SwapLanguage()
         {
-            LanguageManagerInstance.LanguageManager.SetLanguage(systemLanguage);
+            LanguageManagerInstance.LanguageManager.SetLanguage(language);
         }
     }
 }

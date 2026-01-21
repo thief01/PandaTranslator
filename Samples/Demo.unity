@@ -172,7 +172,7 @@ MonoBehaviour:
   languageVariable:
     PreviewLanguage: 0
     Category: 0
-    Key: 1
+    Key: 0
     CategoryName: Demo
     KeyName: English
 --- !u!114 &123642934
@@ -482,7 +482,7 @@ MonoBehaviour:
   languageVariable:
     PreviewLanguage: 27
     Category: 0
-    Key: 0
+    Key: 2
     CategoryName: Demo
     KeyName: Polish
   setNativeSize: 0
@@ -961,9 +961,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageVariable:
-    PreviewLanguage: 27
+    PreviewLanguage: 1
     Category: 0
-    Key: 2
+    Key: 1
     CategoryName: Demo
     KeyName: Polish
   setNativeSize: 0
@@ -1194,9 +1194,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 617818491}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91193e02f9d1a3b458580f0b4fc7d31c, type: 3}
+  m_Script: {fileID: 11500000, guid: cfac6004a95edcc4ab8307ebbba403ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  language: 27
 --- !u!114 &617818494
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1242,8 +1243,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 617818493}
-        m_TargetAssemblyTypeName: Unity_Translate.Scripts.LanguageChanger, UnityTranslate
-        m_MethodName: UseLanguage
+        m_TargetAssemblyTypeName: PandaTranslator.Samples.Scripts.ChangeLanguage,
+          Sample
+        m_MethodName: SwapLanguage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1475,7 +1477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageVariable:
-    PreviewLanguage: 10
+    PreviewLanguage: 0
     Category: 0
     Key: 5
     CategoryName: Demo
@@ -1500,7 +1502,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Play
+  m_text: Use
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1632,7 +1634,7 @@ MonoBehaviour:
   languageVariable:
     PreviewLanguage: 27
     Category: 0
-    Key: 0
+    Key: 2
     CategoryName: Demo
     KeyName: Polish
 --- !u!114 &849699590
@@ -1884,7 +1886,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageVariable:
-    PreviewLanguage: 10
+    PreviewLanguage: 0
     Category: 0
     Key: 4
     CategoryName: Demo
@@ -2294,9 +2296,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1431871166}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91193e02f9d1a3b458580f0b4fc7d31c, type: 3}
+  m_Script: {fileID: 11500000, guid: cfac6004a95edcc4ab8307ebbba403ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  language: 10
 --- !u!114 &1431871169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2342,8 +2345,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1431871168}
-        m_TargetAssemblyTypeName: Unity_Translate.Scripts.LanguageChanger, UnityTranslate
-        m_MethodName: UseLanguage
+        m_TargetAssemblyTypeName: PandaTranslator.Samples.Scripts.ChangeLanguage,
+          Sample
+        m_MethodName: SwapLanguage
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2597,9 +2601,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   languageVariable:
-    PreviewLanguage: 0
+    PreviewLanguage: 1
     Category: 0
-    Key: 3
+    Key: 1
     CategoryName: Demo
     KeyName: English
 --- !u!114 &1486280878
@@ -2622,7 +2626,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Current Language
+  m_text: Polish
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2833,7 +2837,7 @@ MonoBehaviour:
   languageVariable:
     PreviewLanguage: 27
     Category: 0
-    Key: 1
+    Key: 3
     CategoryName: Demo
     KeyName: Polish
   setNativeSize: 0
@@ -3158,7 +3162,7 @@ MonoBehaviour:
   languageVariable:
     PreviewLanguage: 27
     Category: 0
-    Key: 1
+    Key: 3
     CategoryName: Demo
     KeyName: Polish
 --- !u!114 &1925851706

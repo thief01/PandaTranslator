@@ -27,21 +27,21 @@ MonoBehaviour:
         m_PersistentCalls:
           m_Calls: []
       translation: Current language
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: ac246f6b1fea9f74dad3c50a6600916e, type: 3}
       audioClip: {fileID: 0}
       key: CurrentLanguage
     - OnLanguageDataChanged:
         m_PersistentCalls:
           m_Calls: []
       translation: Polish
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: 3a96cc82aeb450d49ae28fbd5a000bab, type: 3}
       audioClip: {fileID: 0}
       key: Polish
     - OnLanguageDataChanged:
         m_PersistentCalls:
           m_Calls: []
       translation: English
-      sprite: {fileID: 0}
+      sprite: {fileID: 21300000, guid: ac246f6b1fea9f74dad3c50a6600916e, type: 3}
       audioClip: {fileID: 0}
       key: English
     - OnLanguageDataChanged:
