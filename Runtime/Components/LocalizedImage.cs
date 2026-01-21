@@ -10,10 +10,9 @@ namespace PandaTranslator.Runtime.Components
         [SerializeField] private bool setNativeSize = true;
         private Image image;
 
-        protected override void Awake()
+        protected void Awake()
         {
             image = GetComponent<Image>();
-            base.Awake();
         }
 
         protected override void UpdateLang()

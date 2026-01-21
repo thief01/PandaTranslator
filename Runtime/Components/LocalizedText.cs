@@ -11,10 +11,9 @@ namespace PandaTranslator.Runtime.Components
         private TMP_Text tmpText;
         private string[] formatingTexts;
 
-        protected override void Awake()
+        protected void Awake()
         {
             tmpText = GetComponent<TMP_Text>();
-            base.Awake();
         }
 
         public void SetTextsToFormat(params string[] texts)

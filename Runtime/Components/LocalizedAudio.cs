@@ -7,10 +7,9 @@ namespace PandaTranslator.Runtime.Components
     {
         private AudioSource audioSource;
 
-        protected override void Awake()
+        protected void Awake()
         {
             audioSource = GetComponent<AudioSource>();
-            base.Awake();
         }
 
         protected override void UpdateLang()

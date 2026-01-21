@@ -10,12 +10,7 @@ namespace PandaTranslator.Runtime.Components
         [SerializeField] private LanguageVariable languageVariable;
 
         protected LanguageData languageItem;
-
-        protected virtual void Awake()
-        {
-            UpdateLang();
-        }
-
+        
         private void OnDestroy()
         {
             UnRegisterEvents();
