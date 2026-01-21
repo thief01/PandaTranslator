@@ -54,7 +54,7 @@ namespace PandaTranslator.Editor.Tools
 
             if (GUILayout.Button("Add language"))
             {
-                
+                NewLanguageWindow.OpenWindow();
             }
 
             GUILayout.EndHorizontal();

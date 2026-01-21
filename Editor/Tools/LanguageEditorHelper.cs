@@ -1,6 +1,9 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Linq;
+using System.Runtime.CompilerServices;
 using PandaTranslator.Runtime.Core;
 using PandaTranslator.Runtime.Data;
+using UnityEditor;
+using UnityEngine;
 
 namespace PandaTranslator.Editor.Tools
 {
@@ -12,9 +15,31 @@ namespace PandaTranslator.Editor.Tools
             this.languageSettings = languageSettings;
         }
 
-        public void AddNewLanguage(string name)
+        public void AddNewLanguage(string name, SystemLanguage systemLanguage)
         {
-            
+            var newLanguage = ScriptableObject.CreateInstance<Language>();
+            newLanguage.name = name;
+            newLanguage.language = systemLanguage;
+            var categories = languageSettings.LanguageDefinitionData.Categories;
+            foreach (var category in categories)
+            {
+                var languageItems = category.Keys.Select(key => new LanguageItem()
+                {
+                    key =  key
+                }).ToList();
+                newLanguage.languageCategories.Add(new LanguageCategory()
+                {
+                    categoryName = category.Name,
+                    languageItems = languageItems
+                });
+            }
+
+            AssetDatabase.CreateAsset(newLanguage, "Assets/Resources/Languages/" + name + ".asset");
+            var language = Resources.Load<Language>("Languages/" + name);
+            languageSettings.languages.Add(language);
+            EditorUtility.SetDirty(languageSettings);
+            AssetDatabase.SaveAssets();
+            AssetDatabase.Refresh();
         }
 
         public void RemoveLanguage(string name)
