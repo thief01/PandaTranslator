@@ -43,7 +43,7 @@ namespace PandaTranslator.Editor.Tools
             AssetDatabase.CreateAsset(newLanguage, path + name + ".asset");
             var language = Resources.Load<Language>("Languages/" + name);
             languageSettings.languages.Add(language);
-            EditorUtility.SetDirty(languageSettings);
+            SetDirty();
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
         }
@@ -195,6 +195,15 @@ namespace PandaTranslator.Editor.Tools
             {
                 var languageCategory =  languages[i].languageCategories.Find(ctg => ctg.categoryName == category);
                 languageCategory.RemoveLanguageItem(key);                
+            }
+        }
+
+        private void SetDirty()
+        {
+            EditorUtility.SetDirty(languageSettings);
+            for (int i = 0; i < languageSettings.languages.Count; i++)
+            {
+                EditorUtility.SetDirty(languageSettings.languages[i]);
             }
         }
     }

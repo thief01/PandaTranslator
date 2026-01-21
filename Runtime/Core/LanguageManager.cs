@@ -9,40 +9,21 @@ using UnityEngine;
 
 namespace PandaTranslator.Runtime.Core
 {
-    public class LanguageManager : ILanguageManager, ILanguage
+    public class LanguageManager : ILanguageManager
     {
-        public LanguageDictionary LanguageDictionary { get; private set; }
+        public ILanguage LanguageDictionary { get; private set; }
         public LanguageSettings LanguageSettings { get; private set; }
 
-        public LanguageManager()
+        public LanguageManager(ILanguage language)
         {
             LanguageSettings = LanguageSettings.LoadLanguageSettings();
-            LanguageDictionary = new LanguageDictionary(LanguageSettings);
+            language.SetLanguageSettings(LanguageSettings);
+            LanguageDictionary = language;
         }
         
         public ILanguage GetLanguage()
         {
             return LanguageDictionary;
-        }
-        
-        public LanguageItem GetLanguageItem(string category, string key)
-        {
-            return LanguageDictionary.GetLanguageItem(category, key);
-        }
-
-        public LanguageItem GetLanguageItem(string path)
-        {
-            return LanguageDictionary.GetLanguageItem(path);
-        }
-
-        public LanguageItem GetLanguageItem(int categoryId, int keyId)
-        {
-            return LanguageDictionary.GetLanguageItem(categoryId, keyId);
-        }
-
-        public LanguageItem GetLanguageItem(LanguageVariable languageVariable)
-        {
-            return LanguageDictionary.GetLanguageItem(languageVariable);
         }
 
         public void SetLanguage(SystemLanguage language)
@@ -53,7 +34,7 @@ namespace PandaTranslator.Runtime.Core
                 Debug.LogError("Could not find language " + language);
                 return;
             }
-            LanguageDictionary.ChangeLanguage(newLanguage);
+            LanguageDictionary.SetLanguage(newLanguage);
         }
         
 #if UNITY_EDITOR

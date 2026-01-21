@@ -18,6 +18,11 @@ MonoBehaviour:
     - Name: UI
       Keys:
       - LanguageName
+      - CurrentLanguage
+      - English
+      - Polish
+      - Play
+      - Use
   languages:
   - {fileID: 11400000, guid: 5e703c0e58289f24f9a90b1f2bd97140, type: 2}
   - {fileID: 11400000, guid: c750f93128bba1345bfb944a65647bac, type: 2}

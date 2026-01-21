@@ -11,7 +11,7 @@ namespace PandaTranslator.Samples.Scripts
             {
                 if (languageManager == null)
                 {
-                    languageManager = new LanguageManager();
+                    languageManager = new LanguageManager(new LanguageDictionary());
                 }
                 return languageManager;
             }

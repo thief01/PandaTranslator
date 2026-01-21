@@ -1,12 +1,11 @@
+using PandaTranslator.Runtime.Core.Interfaces;
 using PandaTranslator.Runtime.Data;
 using UnityEngine;
 
 namespace PandaTranslator.Runtime.Components
 {
-    public abstract class LocalizedComponent : MonoBehaviour
+    public abstract class LocalizedComponent : MonoBehaviour, ILanguageComponent
     {
-        public LanguageVariable LanguageVariable => languageVariable;
-
         [SerializeField] private LanguageVariable languageVariable;
 
         protected LanguageData languageItem;
@@ -14,6 +13,11 @@ namespace PandaTranslator.Runtime.Components
         private void OnDestroy()
         {
             UnRegisterEvents();
+        }
+
+        public LanguageVariable GetLanguageVariable()
+        {
+            return languageVariable;
         }
 
         public void SetLanguageData(LanguageData languageData)

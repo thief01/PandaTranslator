@@ -16,7 +16,7 @@ namespace PandaTranslator.Editor.Inspectors
         private void OnEnable()
         {
             localizedComponent = (LocalizedComponent)target;
-            languageVariable = localizedComponent.LanguageVariable;
+            languageVariable = localizedComponent.GetLanguageVariable();
             var languageSettings = LanguageSettings.LoadLanguageSettings();
             if (languageSettings == null)
                 return;

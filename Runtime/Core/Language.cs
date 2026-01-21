@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace PandaTranslator.Runtime.Core
 {
-    public class Language : ScriptableObject, ILanguage
+    public class Language : ScriptableObject
     {
         public SystemLanguage language;
         public List<LanguageCategory> languageCategories = new List<LanguageCategory>();

@@ -1,5 +1,6 @@
 using System;
 using PandaTranslator.Runtime.Components;
+using PandaTranslator.Runtime.Core.Interfaces;
 using UnityEngine;
 
 namespace PandaTranslator.Samples.Scripts
@@ -9,10 +10,9 @@ namespace PandaTranslator.Samples.Scripts
     {
         private void Awake()
         {
-            var localizedComponent = GetComponent<LocalizedComponent>();
-            var languageVariable = localizedComponent.LanguageVariable;
-            var languageItem = LanguageManagerInstance.LanguageManager.GetLanguageItem(languageVariable);
-            localizedComponent.SetLanguageData(languageItem);
+            var localizedComponent = GetComponent<ILanguageComponent>();
+            var language = LanguageManagerInstance.LanguageManager.GetLanguage();
+            language.SetUpLanguageComponent(localizedComponent);
         }
     }
 }

@@ -8,35 +8,36 @@ namespace PandaTranslator.Runtime.Core
 {
     public class LanguageDictionary : ILanguage
     {
-        private readonly Dictionary<string, LanguageItem> items;
+        
+        private Dictionary<string, LanguageItem> items;
         private LanguageSettings languageSettings;
         private Language currentLanguage;
 
-        public LanguageDictionary(LanguageSettings languageSettings)
+        private List<ILanguageComponent> languageComponentsQueue;
+
+        public LanguageDictionary()
+        {
+            languageComponentsQueue = new List<ILanguageComponent>();
+        }
+        
+        
+        public void SetLanguageSettings(LanguageSettings languageSettings)
         {
             this.languageSettings = languageSettings;
             items = new Dictionary<string, LanguageItem>();
             InitializeDictionary();
         }
 
-        private void InitializeDictionary()
-        {
-            var categories = languageSettings.LanguageDefinitionData.Categories;
-            foreach (var category in categories)
-            {
-                var keys = category.Keys;
-                foreach (var key in keys)
-                {
-                    var languagePath = GetLanguagePath(category.Name, key);
-                    items.Add(languagePath, new LanguageItem());
-                }
-            }
-        }
-
-        public void ChangeLanguage(Language language)
+        public void SetLanguage(Language language)
         {
             currentLanguage = language;
             UpdateTranslations();
+        }
+
+        public void SetUpLanguageComponent(ILanguageComponent languageComponent)
+        {
+            var languageData = GetLanguageItem(languageComponent.GetLanguageVariable());
+            languageComponent.SetLanguageData(languageData);
         }
 
         public LanguageItem GetLanguageItem(string category, string key)
@@ -67,6 +68,22 @@ namespace PandaTranslator.Runtime.Core
             Debug.LogError($"LanguageDictionary.GetLanguageItem: {path} path not found");
             return null;
         }
+        
+        private void InitializeDictionary()
+        {
+            var categories = languageSettings.LanguageDefinitionData.Categories;
+            foreach (var category in categories)
+            {
+                var keys = category.Keys;
+                foreach (var key in keys)
+                {
+                    var languagePath = GetLanguagePath(category.Name, key);
+                    items.Add(languagePath, new LanguageItem());
+                }
+            }
+            
+        }
+        
 
         private string GetLanguagePath(int categoryId, int keyId)
         {
