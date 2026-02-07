@@ -135,3 +135,4 @@ None currently. See [CHANGELOG.md](CHANGELOG.md) for fixed issues from previous 
 ---
 
 Made with 🐼 by thief01 @ Mimi Games
+![alt text](https://mimigames.pl/img/mg.png)
